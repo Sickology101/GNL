@@ -47,12 +47,13 @@ int main ()
 		ft_putstr("open() error");
 		return (1);
 	}
-	printf("GNL return = %d\n",get_next_line(fd2, file));
-	printf("line3 = %s\n",file[0]);
-	printf("GNL return = %d\n",get_next_line(fd2, file));
-	printf("line3 = %s\n",file[0]);
-	printf("GNL return = %d\n",get_next_line(fd2, file));
-	printf("line3 = %s\n",file[0]);
+	printf("%d : ",get_next_line(fd2, file));
+	printf("%s\n",file[0]);
+	printf("strcmp = %d\n",strcmp(file[0], "12345678"));
+	printf("%d : ",get_next_line(fd2, file));
+	printf("%s\n",file[0]);
+	printf("%d : ",get_next_line(fd2, file));
+	printf("%s\n",file[0]);
 	if (close(fd2) == -1)
 	{
 		ft_putstr("close() error");

@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:55:54 by mangheli          #+#    #+#             */
-/*   Updated: 2021/12/21 10:35:11 by marius           ###   ########.fr       */
+/*   Updated: 2021/12/21 13:24:56 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static	char	*read_line(char *savebuff, char **line, int *error)
 
 	index = 0;
 	linesize = 0;
+	if(savebuff[linesize] == '\0')
+	{
+		*error = 0;
+		return (NULL);
+	}
 	while (savebuff[linesize] != '\n' && savebuff[linesize] != '\0')
 	{
 		linesize++;
@@ -63,6 +68,7 @@ static	char	*read_line(char *savebuff, char **line, int *error)
 	}
 	if (!line)
 		*error = -1;
+	printf("linesize = %d\n",linesize);
 	*line = ft_strncpy(*line, savebuff, linesize);
 	savebuff = nextline(savebuff, linesize);
 	return (savebuff);
@@ -100,13 +106,11 @@ int	get_next_line(const int fd, char **line)
 	int			error;
 
 	error = 0;
-	printf("savebuff before func %s\n",savebuff[fd]);
 	if (line == NULL || fd < 0 || BUFF_SIZE <= 0 || fd > MAX_FD)
 		return (-1);
 	if (savebuff[fd])
 		savebuff[fd] = read_line(savebuff[fd], line, &error);
 	else
 		savebuff[fd] = open_file(savebuff[fd], line, fd, &error);
-	printf("savebuff after func %s\n",savebuff[fd]);
 	return (error);
 }
