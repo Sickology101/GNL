@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:55:54 by mangheli          #+#    #+#             */
-/*   Updated: 2021/12/21 13:24:56 by marius           ###   ########.fr       */
+/*   Updated: 2021/12/21 14:33:09 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static	char	*read_line(char *savebuff, char **line, int *error)
 	}
 	if (!line)
 		*error = -1;
-	printf("linesize = %d\n",linesize);
 	*line = ft_strncpy(*line, savebuff, linesize);
+	line[0][linesize] = '\0';
 	savebuff = nextline(savebuff, linesize);
 	return (savebuff);
 }
